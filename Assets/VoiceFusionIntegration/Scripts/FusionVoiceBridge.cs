@@ -96,7 +96,7 @@ namespace Photon.Voice.Fusion
                 return null;
             }
             VoiceNetworkObject voiceNetworkObject = this.networkRunner.TryGetNetworkedBehaviourFromNetworkedObjectRef<VoiceNetworkObject>(networkId);
-            if (voiceNetworkObject == null)
+            if (ReferenceEquals(null, voiceNetworkObject) || !voiceNetworkObject)
             {
                 if (this.Logger.IsWarningEnabled)
                 {
@@ -175,16 +175,6 @@ namespace Photon.Voice.Fusion
 
         private bool VoiceConnectAndFollowFusion()
         {
-            if (this.networkRunner.IsSinglePlayer)
-            {
-                if (this.Logger.IsInfoEnabled)
-                {
-                    this.Logger.LogInfo("Fusion is in SinglePlayer mode. Won't connect to PhotonVoice.");
-                }
-
-                return true;
-            }
-
             AppSettings settings = new AppSettings();
             if (this.UseFusionAppSettings)
             {
@@ -446,7 +436,7 @@ namespace Photon.Voice.Fusion
         {
         }
 
-        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
+        void INetworkRunnerCallbacks.OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
         {
         }
 

@@ -16,8 +16,7 @@ public class DragonHuntersNetworkDebugStart : NetworkDebugStart
             Scene = scene,
             SessionName = DefaultRoomName,
             Initialized = initialized,
-            ObjectPool = runner.GetComponent<INetworkObjectPool>(),
-            SceneObjectProvider = runner.GetComponent<INetworkSceneObjectProvider>()
+            ObjectPool = runner.GetComponent<INetworkObjectPool>()
         } );
     }
 }
